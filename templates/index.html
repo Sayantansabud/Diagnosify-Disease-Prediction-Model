@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Health Care Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/moon.svg" rel="preload" as="image">
+    <link href="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/sun.svg" rel="preload" as="image">
+    <style>
+      :root {
+        --bg-light: #f3e8ff;
+        --bg-dark: #121212;
+        --text-light: #212529;
+        --text-dark: #ffffff;
+        --nav-bg-light: #ffffff;
+        --nav-bg-dark: #1f1f1f;
+        --primary-color: #6f42c1;
+        --card-bg: #ffffff;
+        --card-bg-dark: #2c2c2c;
+        --link-hover: rgba(0, 0, 0, 0.05);
+        --button-hover-dark: #5a32a3;
+      }
+
+      [data-theme="light"] body {
+        background-color: var(--bg-light);
+        color: var(--text-light);
+      }
+
+      [data-theme="dark"] body {
+        background-color: var(--bg-dark);
+        color: var(--text-dark);
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .navbar {
+        background-color: var(--nav-bg-light) !important;
+        transition: background-color 0.3s ease-in-out;
+        border-radius: 40px;
+        padding: 0.5rem 1.5rem;
+        margin: 1rem auto;
+        max-width: 1140px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+      [data-theme="dark"] .navbar {
+        background-color: var(--nav-bg-dark) !important;
+      }
+
+      .navbar-brand, .nav-link {
+        color: var(--primary-color) !important;
+        font-weight: 600;
+      }
+
+      .navbar-nav .nav-link {
+        margin-left: 15px;
+        padding: 6px 12px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .navbar-nav .nav-link:hover {
+        background-color: var(--link-hover);
+      }
+
+      .btn-toggle-theme {
+        background-color: transparent;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .btn-toggle-theme img {
+        width: 20px;
+        height: 20px;
+      }
+
+      .logo img {
+        width: 45px;
+        height: 45px;
+        border: 2px solid var(--primary-color);
+        border-radius: 50%;
+      }
+
+      .form-container {
+        background: var(--card-bg);
+        color: var(--text-light);
+        border-radius: 20px;
+        padding: 40px;
+        max-width: 800px;
+        margin: auto;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        animation: fadeIn 0.8s ease-in-out;
+      }
+      [data-theme="dark"] .form-container {
+        background: var(--card-bg-dark);
+        color: var(--text-dark);
+      }
+
+      .prediction-options {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-top: 3rem;
+      }
+
+      .prediction-button {
+        background: transparent;
+        border: 2px solid var(--primary-color);
+        color: var(--primary-color);
+        padding: 0.65rem 1.5rem;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(4px);
+      }
+
+      .prediction-button:hover {
+        background-color: var(--primary-color);
+        color: #fff;
+        box-shadow: 0 8px 20px rgba(111, 66, 193, 0.2);
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid justify-content-between align-items-center">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <div class="logo me-2">
+            <img src="{{ url_for('static', filename='img2.jpg') }}" alt="">
+          </div>
+          Diagnosify
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="/developer">Developer</a></li>
+            <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+          </ul>
+          <button id="themeToggle" class="btn-toggle-theme ms-3">
+            <img id="themeIcon" src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/moon.svg" alt="Toggle Theme">
+          </button>
+        </div>
+      </div>
+    </nav>
+
+   <!-- Main Form -->
+<h1 class="mt-4 mb-4 text-center" style="color: var(--primary-color); font-weight: 700; transition: all 0.3s ease;">Enter Your Symptoms. Understand Your Health.🩺</h1>
+<div class="container my-4 form-container">
+  <form action="/predict" method="post">
+    <div class="mb-4">
+      <label for="symptoms" class="form-label">Enter Symptoms</label>
+      <input type="text" class="form-control form-control-lg" id="symptoms" name="symptoms" placeholder="e.g. itching, headache, nausea" required style="transition: border 0.3s ease;">
+    </div>
+
+    {% if message %}<div class="alert alert-info">{{ message }}</div>{% endif %}
+
+    <button type="submit" class="btn btn-lg w-100" style="background-color: var(--primary-color); color: #fff; font-weight: 600; border-radius: 12px; transition: all 0.3s ease;">
+      Predict
+    </button>
+  </form>
+</div>
+
+
+   {% if predicted_disease %}
+<!-- Result Buttons -->
+<h1 class="text-center my-5" style="color: var(--primary-color); font-weight: 700; transition: all 0.3s ease;">AI Diagnostic Results</h1>
+<div class="container">
+  <div class="result-container d-flex flex-wrap justify-content-center gap-3">
+    <button class="btn result-btn btn-outline-dark px-4 py-2" data-bs-toggle="modal" data-bs-target="#diseaseModal">Disease</button>
+    <button class="btn result-btn btn-outline-dark px-4 py-2" data-bs-toggle="modal" data-bs-target="#descriptionModal">Description</button>
+    <button class="btn result-btn btn-outline-dark px-4 py-2" data-bs-toggle="modal" data-bs-target="#precautionModal">Precaution</button>
+    <button class="btn result-btn btn-outline-dark px-4 py-2" data-bs-toggle="modal" data-bs-target="#medicationsModal">Medications</button>
+    <button class="btn result-btn btn-outline-dark px-4 py-2" data-bs-toggle="modal" data-bs-target="#workoutsModal">Workouts</button>
+    <button class="btn result-btn btn-outline-dark px-4 py-2" data-bs-toggle="modal" data-bs-target="#dietsModal">Diets</button>
+  </div>
+</div>
+
+
+    {% endif %}
+
+<!-- Modals -->
+<div class="modal fade" id="diseaseModal" tabindex="-1" aria-labelledby="diseaseModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content text-white bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title">Predicted Disease</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>{{ predicted_disease }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content text-white bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title">Description</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>{{ dis_des }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="precautionModal" tabindex="-1" aria-labelledby="precautionModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content text-white bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title">Precaution</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <ul>{% for i in my_precautions %}<li>{{ i }}</li>{% endfor %}</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="medicationsModal" tabindex="-1" aria-labelledby="medicationsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content text-white bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title">Medications</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <ul>{% for i in medications %}<li>{{ i }}</li>{% endfor %}</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="workoutsModal" tabindex="-1" aria-labelledby="workoutsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content text-white bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title">Workouts</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <ul>{% for i in workout %}<li>{{ i }}</li>{% endfor %}</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="dietsModal" tabindex="-1" aria-labelledby="dietsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content text-white bg-dark">
+      <div class="modal-header">
+        <h5 class="modal-title">Diets</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <ul>{% for i in my_diet %}<li>{{ i }}</li>{% endfor %}</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  :root[data-theme='dark'] {
+    --primary-color: #f3e8ff;
+    --text-color: #fff;
+    --background-color: #121212;
+    --btn-border-color: #fff;
+    --btn-text-color: #fff;
+  }
+
+  :root[data-theme='light'] {
+    --primary-color: #6200ea;
+    --text-color: #000;
+    --background-color: #fff;
+    --btn-border-color: #000;
+    --btn-text-color: #000;
+  }
+
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  .result-btn {
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    border: 2px solid var(--btn-border-color);
+    color: var(--btn-text-color);
+    background-color: transparent;
+  }
+
+  .result-btn:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+</style>
+
+
+<script>
+  const toggleBtn = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  toggleBtn.addEventListener('click', () => {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-theme');
+    const isLight = currentTheme === 'light';
+    html.setAttribute('data-theme', isLight ? 'dark' : 'light');
+    themeIcon.src = isLight
+      ? 'https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/sun.svg'
+      : 'https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/moon.svg';
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Chatbot Assistant -->
+<div id="chatbot-assistant" class="chatbot-container">
+  <div class="chatbot-header" onclick="toggleChatbot()">
+    <span>🤖 Diagnosify Assistant</span>
+    <span class="chat-status-dot"></span>
+  </div>
+  <div class="chatbot-body" id="chatBody">
+    <div class="chat-message bot">Hi! I’m Diagnosify Assistant. Ask me anything related to symptoms or predictions!</div>
+  </div>
+  <div class="chatbot-footer">
+    <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleKey(event)">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<!-- Floating Button -->
+<button id="chat-toggle-btn" onclick="toggleChatbot()">💬</button>
+
+<style>
+  #chat-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #6f42c1;
+    border: none;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: background 0.3s ease;
+  }
+
+  .chatbot-container {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 320px;
+    background: var(--card-bg);
+    color: var(--text-light);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    z-index: 1001;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  [data-theme="dark"] .chatbot-container {
+    background: #1f1f1f;
+    color: white;
+  }
+
+  .chatbot-header {
+    background: var(--primary-color);
+    padding: 12px;
+    color: white;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .chat-status-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    animation: blink 1s infinite;
+  }
+
+  .chatbot-body {
+    max-height: 280px;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .chatbot-footer {
+    display: flex;
+    border-top: 1px solid #ddd;
+    padding: 8px;
+    background: #f8f8f8;
+  }
+
+  .chatbot-footer input {
+    flex: 1;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+  }
+
+  .chatbot-footer button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-left: 8px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .chat-message {
+    padding: 8px 12px;
+    border-radius: 12px;
+    max-width: 80%;
+    animation: fadeIn 0.3s ease-in;
+  }
+
+  .chat-message.bot {
+    background: #e1d4f9;
+    align-self: flex-start;
+  }
+
+  .chat-message.user {
+    background: #d1f0c4;
+    align-self: flex-end;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  @keyframes blink {
+    0%, 100% {opacity: 1;}
+    50% {opacity: 0.3;}
+  }
+</style>
+
+<script>
+  const chatContainer = document.getElementById("chatbot-assistant");
+  const chatInput = document.getElementById("chatInput");
+  const chatBody = document.getElementById("chatBody");
+
+  function toggleChatbot() {
+    chatContainer.style.display = (chatContainer.style.display === "flex") ? "none" : "flex";
+  }
+
+  function handleKey(event) {
+    if (event.key === "Enter") {
+      sendMessage();
+    }
+  }
+
+  function sendMessage() {
+    const message = chatInput.value.trim();
+    if (message === "") return;
+
+    // Add user message
+    const userMsg = document.createElement("div");
+    userMsg.className = "chat-message user";
+    userMsg.textContent = message;
+    chatBody.appendChild(userMsg);
+
+    // Scroll to bottom
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    // Simulate bot reply
+    setTimeout(() => {
+      const botMsg = document.createElement("div");
+      botMsg.className = "chat-message bot";
+      botMsg.textContent = generateReply(message);
+      chatBody.appendChild(botMsg);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }, 700);
+
+    chatInput.value = "";
+  }
+
+  function generateReply(msg) {
+    // Simple keyword-based dummy response
+    const lowerMsg = msg.toLowerCase();
+    if (lowerMsg.includes("headache")) return "Try drinking water and resting. If persistent, consult a doctor.";
+    if (lowerMsg.includes("fever")) return "You might be having an infection. Monitor temperature regularly.";
+    if (lowerMsg.includes("covid")) return "If symptoms match, consider testing and isolate yourself.";
+    return "I'm still learning! For accurate help, try submitting your symptoms above.";
+  }
+</script>
+
+  </body>
+</html>

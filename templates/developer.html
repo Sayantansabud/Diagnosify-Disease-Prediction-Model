@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About Developer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      :root {
+        --primary-color: #4CAF50;
+        --accent-color: #2196F3;
+        --bg-color: #f3e8ff;      /* Light purple background */
+        --text-color: #1a1a1a;
+        --card-bg: #ffffff;       /* White card content */
+      }
+
+      body.dark-mode {
+        --bg-color: #1e1e1e;
+        --text-color: #f2f2f2;
+        --card-bg: #2b2b2b;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: 'Inter', sans-serif;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .container-box {
+        background-color: var(--card-bg);
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .btn-outline-dark-mode {
+        border: 1px solid var(--accent-color);
+        color: var(--accent-color);
+      }
+
+      .btn-outline-dark-mode:hover {
+        background-color: var(--accent-color);
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container my-5 container-box">
+      <div class="d-flex justify-content-between mb-3">
+        <button class="btn btn-outline-dark-mode" onclick="window.history.back()">← Go Back</button>
+        <button class="btn btn-outline-dark-mode" onclick="toggleDarkMode()">🌓</button>
+      </div>
+
+      <h2 style="color: var(--primary-color); font-weight: 700; font-size: 2rem;">About Sayantan Sabud</h2>
+      <p class="mt-3" style="font-size: 1.1rem; line-height: 1.6;">
+        Sayantan Sabud is a passionate Computer Science Engineering student and a freelance designer with a drive for innovation in AI, market strategy, and business development.
+      </p>
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <h4 style="color: var(--accent-color); font-weight: 600;">Meet the Developer</h4>
+          <p style="font-size: 1.05rem;">
+            Hi! I’m Sayantan Sabud, a CSE undergrad at KIIT with a keen interest in AI, UI/UX, and real-world tech-driven solutions.
+            With a strong foundation in programming and product development, I’ve worked on several collaborative research and startup projects.
+          </p>
+
+          <h4 class="mt-4" style="color: var(--accent-color); font-weight: 600;">My Vision</h4>
+          <p style="font-size: 1.05rem;">
+            I strive to bridge the gap between innovative technology and human needs. Whether I’m designing brand strategies,
+            developing intuitive interfaces, or contributing to AI-driven platforms, I’m committed to delivering impactful solutions.
+          </p>
+
+          <h4 class="mt-4" style="color: var(--accent-color); font-weight: 600;">Passion for Healthcare</h4>
+          <p style="font-size: 1.05rem;">
+            My work on this health-based AI platform stems from my desire to make healthcare more accessible and informative.
+            Through machine learning and smart UX, I aim to empower users with reliable insights and guidance.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

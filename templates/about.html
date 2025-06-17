@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Diagnosify | About Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      :root {
+        --primary-color: #4CAF50;
+        --accent-color: #2196F3;
+        --bg-color: #f3e8ff;      /* Light purple background */
+        --text-color: #1a1a1a;
+        --card-bg: #ffffff;       /* White box */
+      }
+
+      body.dark-mode {
+        --bg-color: #1e1e1e;
+        --text-color: #f2f2f2;
+        --card-bg: #2b2b2b;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: 'Inter', sans-serif;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .container-box {
+        background-color: var(--card-bg);
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .btn-outline-dark-mode {
+        border: 1px solid var(--accent-color);
+        color: var(--accent-color);
+      }
+
+      .btn-outline-dark-mode:hover {
+        background-color: var(--accent-color);
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container my-5 container-box">
+      <div class="d-flex justify-content-between mb-3">
+        <button class="btn btn-outline-dark-mode" onclick="window.history.back()">← Go Back</button>
+        <button class="btn btn-outline-dark-mode" onclick="toggleDarkMode()">🌓</button>
+      </div>
+
+      <h2 style="color: var(--primary-color); font-weight: 700; font-size: 2rem;">About Us</h2>
+      <p class="mt-3" style="font-size: 1.1rem; line-height: 1.6;">
+        Welcome to our AI-powered <strong style="color: var(--primary-color)">HealthCare Center</strong> — a next-gen solution designed with minimalism, clarity, and user-focus in mind.
+      </p>
+
+      <h4 class="mt-4" style="color: var(--accent-color); font-weight: 600; font-size: 1.3rem;">Who I Am</h4>
+      <p style="font-size: 1.05rem;">
+        I'm <strong style="color: var(--primary-color)">Sayantan Sabud</strong>, a Computer Science Engineering student at KIIT, a passionate explorer of technology, design, and health innovation.
+      </p>
+
+      <h4 class="mt-4" style="color: var(--accent-color); font-weight: 600; font-size: 1.3rem;">Why This Exists</h4>
+      <p style="font-size: 1.05rem;">
+        This platform emerged from my drive to blend machine learning with real-world utility. Inspired by my freelance work in design and brand strategy, it was built to bring a minimal, intuitive AI tool to those seeking health insights.
+      </p>
+
+      <h4 class="mt-4" style="color: var(--accent-color); font-weight: 600; font-size: 1.3rem;">Our Mission</h4>
+      <p style="font-size: 1.05rem;">
+        We aim to simplify healthcare decisions through AI. From symptoms to possible conditions, precautions, diets, and workouts — every feature is built to inform and empower you, the user.
+      </p>
+
+      <h4 class="mt-4" style="color: var(--accent-color); font-weight: 600; font-size: 1.3rem;">What Sets Us Apart</h4>
+      <p style="font-size: 1.05rem;">
+        Built with the Inter font and a clean, futuristic design language, this platform focuses on minimal UI, modern animations, and smart interactions — turning complexity into clarity.
+      </p>
+
+      <h4 class="mt-4" style="color: var(--accent-color); font-weight: 600; font-size: 1.3rem;">The Vision</h4>
+      <p style="font-size: 1.05rem;">
+        To make AI health assistance accessible, stylish, and effective. Whether you're exploring symptoms or proactively learning, you're part of this next-gen healthcare movement.
+      </p>
+
+      <p class="mt-4" style="font-size: 1rem; color: var(--primary-color); font-weight: 500;">
+        Thank you for exploring the future of healthcare with us.
+      </p>
+    </div>
+
+    <script>
+      function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

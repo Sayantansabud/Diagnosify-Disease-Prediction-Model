@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog Post</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      :root {
+        --primary-color: #4CAF50;
+        --accent-color: #2196F3;
+        --bg-color: #f3e8ff;       /* Light purple background */
+        --text-color: #1a1a1a;
+        --card-bg: #ffffff;        /* White box */
+      }
+
+      body.dark-mode {
+        --bg-color: #1e1e1e;
+        --text-color: #f2f2f2;
+        --card-bg: #2b2b2b;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: 'Inter', sans-serif;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .container-box {
+        background-color: var(--card-bg);
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .btn-outline-dark-mode {
+        border: 1px solid var(--accent-color);
+        color: var(--accent-color);
+      }
+
+      .btn-outline-dark-mode:hover {
+        background-color: var(--accent-color);
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container my-5 container-box">
+      <div class="d-flex justify-content-between mb-3">
+        <button class="btn btn-outline-dark-mode" onclick="window.history.back()">← Go Back</button>
+        <button class="btn btn-outline-dark-mode" onclick="toggleDarkMode()">🌓</button>
+      </div>
+
+      <h2 class="text-center" style="color: var(--primary-color); font-weight: 700; font-size: 2rem;">
+        Building a Symptom-Based Disease Diagnosis Web App with Flask and Machine Learning
+      </h2>
+
+      <p class="mt-4" style="font-size: 1.1rem; line-height: 1.6;">
+        In the age of technology and information, access to accurate and timely healthcare is more critical than ever.
+        With the increasing importance of remote healthcare solutions, I developed a symptom-based disease diagnosis
+        web application using Flask and machine learning. This user-friendly platform helps users identify potential
+        illnesses based on their symptoms.
+      </p>
+
+      <h4 style="color: var(--accent-color); font-weight: 600;">The Problem</h4>
+      <p style="font-size: 1.05rem;">
+        Many individuals experience symptoms and seek immediate health insights. However, due to overlapping symptoms
+        across diseases, it becomes difficult to determine the actual illness. This project aims to bridge that gap
+        by offering an accessible solution.
+      </p>
+
+      <h4 style="color: var(--accent-color); font-weight: 600;">The Solution</h4>
+      <p style="font-size: 1.05rem;">
+        Our web app enables users to input symptoms and get a prediction of potential diseases using a pre-trained
+        Decision Tree Classifier model. Here’s how it works:
+      </p>
+
+      <ol style="font-size: 1.05rem;">
+        <li><strong>Symptom Input:</strong> Users input their symptoms via a clean and easy interface.</li>
+        <li><strong>Machine Learning Model:</strong> A Decision Tree Classifier predicts the likely disease from a trained dataset.</li>
+        <li><strong>Prediction:</strong> Instant display of the most likely disease based on input.</li>
+        <li><strong>Additional Information:</strong> Includes disease description, precautions, medications, dietary advice, and workout tips.</li>
+      </ol>
+
+      <h4 style="color: var(--accent-color); font-weight: 600;">Key Features</h4>
+      <ul style="font-size: 1.05rem;">
+        <li><strong>User-Friendly Interface:</strong> Simple symptom entry process for all users.</li>
+        <li><strong>Accurate Predictions:</strong> ML-backed predictions based on real health data.</li>
+        <li><strong>Comprehensive Info:</strong> Disease summary, medications, precautions, diet, and workouts included.</li>
+        <li><strong>Educational Blog:</strong> Health-related blog posts to boost awareness and well-being.</li>
+      </ul>
+
+      <h4 class="mt-4" style="color: var(--accent-color); font-weight: 600;">Conclusion</h4>
+      <p style="font-size: 1.05rem;">
+        This AI-powered platform makes healthcare information more accessible, empowering users to take proactive
+        steps toward well-being. In a time where remote health services are rising, this tool helps users get instant
+        insights and enhances awareness around personal health conditions.
+      </p>
+    </div>
+
+    <script>
+      function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
